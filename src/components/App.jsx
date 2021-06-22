@@ -27,6 +27,30 @@ function App() {
                     </div>
                 </article>
             </template>
+            <div className="popup popup_type_avatar">
+                <div className="popup__body">
+                    <form
+                        name="newAvatar"
+                        noValidate
+                        className="popup__form form-newAvatar"
+                        action="#"
+                        method="post"
+                    >
+                        <button type="button" className="popup__close popup-close"></button>
+                        <h2 className="popup__title">Обновить аватар</h2>
+                        <input
+                            className="popup__input popup__input_avatarLink"
+                            name="avatarLink"
+                            id="avatarLink"
+                            placeholder="Ссылка на картинку"
+                            type="url"
+                            required
+                        />
+                        <span className="popup__error" id="avatarLink-error"></span>
+                        <button className="popup__btn-save" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
             <div className="popup popup_type_profile">
                 <div className="popup__body">
                     <form
