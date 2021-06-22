@@ -1,11 +1,10 @@
 import {popups} from "../utils/constants";
 
-
 function Main() {
-
-    function handleEditAvatarClick() {
-        // document.querySelector('.popup_type_avatar').classList.add('popup_is-opened')
+    const handleEditAvatarClick = () => {
+        document.querySelector('.popup_type_avatar').classList.add('popup_is-opened');
     }
+
     function handleEditProfileClick() {
 
     }
@@ -17,7 +16,7 @@ function Main() {
       <>
         <main>
             <section className="profile">
-                <img onClick={handleEditAvatarClick()}
+                <img onClick={handleEditAvatarClick}
                     className="profile__avatar"
                     src="https://media.tenor.com/images/a742721ea2075bc3956a2ff62c9bfeef/tenor.gif"
                     alt="Аватар"
@@ -34,8 +33,8 @@ function Main() {
 
             <section className="elements"></section>
         </main>
-    <div className="popup popup_type_avatar">
-        <div className="popup__body">
+        <div className="popup popup_type_avatar">
+          <div className="popup__body">
             <form
                 name="newAvatar"
                 noValidate
@@ -56,8 +55,8 @@ function Main() {
                 <span className="popup__error" id="avatarLink-error"></span>
                 <button className="popup__btn-save" type="submit">Сохранить</button>
             </form>
+          </div>
         </div>
-    </div>
     </>
     )
 }
