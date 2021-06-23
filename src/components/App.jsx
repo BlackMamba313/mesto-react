@@ -1,12 +1,31 @@
+import React from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
+import PopupWithForm from "./PopupWithForm";
 
 function App() {
+
+    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+    const handleEditAvatarClick = () => {
+        setIsEditAvatarPopupOpen(true);
+    }
+    const handleEditProfileClick = () => {
+        setIsEditProfilePopupOpen(true);
+    }
+    const handleAddPlaceClick = () => {
+        setIsAddPlacePopupOpen(true);
+    }
     return (
-        <div>
+        <>
             <Header/>
-            <Main />
+            <Main onEditProfile={handleEditProfileClick}
+                  onEditAvatar={handleEditAvatarClick}
+                  onAddPlace={handleAddPlaceClick}
+            />
             <Footer />
             <template className="card-template">
                 <article className="elements__card">
@@ -27,17 +46,8 @@ function App() {
                     </div>
                 </article>
             </template>
-            <div className="popup popup_type_avatar">
-                <div className="popup__body">
-                    <form
-                        name="newAvatar"
-                        noValidate
-                        className="popup__form form-newAvatar"
-                        action="#"
-                        method="post"
-                    >
-                        <button type="button" className="popup__close popup-close"></button>
-                        <h2 className="popup__title">Обновить аватар</h2>
+
+            <PopupWithForm isOpen={isEditAvatarPopupOpen}>
                         <input
                             className="popup__input popup__input_avatarLink"
                             name="avatarLink"
@@ -47,21 +57,8 @@ function App() {
                             required
                         />
                         <span className="popup__error" id="avatarLink-error"></span>
-                        <button className="popup__btn-save" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </div>
-            <div className="popup popup_type_profile">
-                <div className="popup__body">
-                    <form
-                        className="popup__form form-editProfile"
-                        noValidate
-                        name="editProfile"
-                        action="#"
-                        method="post"
-                    >
-                        <button type="button" className="popup__close popup-close"></button>
-                        <h2 className="popup__title">Редактировать профиль</h2>
+            </PopupWithForm>
+            <PopupWithForm isOpen={isEditProfilePopupOpen}>
                         <input
                             className="popup__input popup__input_name"
                             name="name"
@@ -84,15 +81,8 @@ function App() {
                             type="text"
                         />
                         <span className="popup__error" id="job-error"></span>
-                        <button className="popup__btn-save" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </div>
-            <div className="popup popup_type_add">
-                <div className="popup__body">
-                    <form className="popup__form form-addCard" noValidate name="addCard" action="#" method="post">
-                        <button type="button" className="popup__close popup-close"></button>
-                        <h2 className="popup__title">Новое место</h2>
+            </PopupWithForm>
+            <PopupWithForm isOpen={isAddPlacePopupOpen}>
                         <input
                             className="popup__input popup__input_title"
                             name="title"
@@ -113,10 +103,7 @@ function App() {
                             required
                         />
                         <span className="popup__error" id="link-error"></span>
-                        <button className="popup__btn-save" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </div>
+            </PopupWithForm>
 
             <div className="popup popup_type_image">
                 <div className="popup__image-container">
@@ -132,7 +119,7 @@ function App() {
                     <button className="popup__btn-save" type="submit">Да</button>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
