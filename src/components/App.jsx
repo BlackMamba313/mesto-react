@@ -19,6 +19,15 @@ function App() {
     const handleAddPlaceClick = () => {
         setIsAddPlacePopupOpen(true);
     }
+
+    function closeAllPopups() {
+        setIsEditProfilePopupOpen(false);
+        setIsAddPlacePopupOpen(false);
+        setIsEditAvatarPopupOpen(false);
+        setSelectedCard("");
+        setIsSaving(false);
+    }
+
     return (
         <>
             <Header/>
@@ -46,8 +55,8 @@ function App() {
                     </div>
                 </article>
             </template>
-
-            <PopupWithForm isOpen={isEditAvatarPopupOpen}>
+            isOpen={isEditAvatarPopupOpen ? "popup_is-opened" : ""}
+            <PopupWithForm isOpen={isEditAvatarPopupOpen ? "popup_is-opened" : ""}>
                         <input
                             className="popup__input popup__input_avatarLink"
                             name="avatarLink"
@@ -58,7 +67,7 @@ function App() {
                         />
                         <span className="popup__error" id="avatarLink-error"></span>
             </PopupWithForm>
-            <PopupWithForm isOpen={isEditProfilePopupOpen}>
+            <PopupWithForm isOpen={isEditProfilePopupOpen ? "popup_is-opened" : ""}>
                         <input
                             className="popup__input popup__input_name"
                             name="name"
@@ -82,7 +91,7 @@ function App() {
                         />
                         <span className="popup__error" id="job-error"></span>
             </PopupWithForm>
-            <PopupWithForm isOpen={isAddPlacePopupOpen}>
+            <PopupWithForm isOpen={isAddPlacePopupOpen ? "popup_is-opened" : ""}>
                         <input
                             className="popup__input popup__input_title"
                             name="title"

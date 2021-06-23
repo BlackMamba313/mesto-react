@@ -2,7 +2,7 @@ function PopupWithForm({ title, name , children, isOpen, onClose }) {
 
 
   return (
-      <div className={`popup popup_type_${name} {${isOpen}?"popup_is-opened":""}`}>
+      <div className={`popup popup_type_${name} ${isOpen}`}>
         <div className="popup__body">
           <form
               className="popup__form form-editProfile"

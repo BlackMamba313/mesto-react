@@ -23,7 +23,6 @@ function Main({onEditAvatar, onEditProfile, onAddPlace}) {
 
             <section className="elements"></section>
         </main>
-
     </>
     )
 }
