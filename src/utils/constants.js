@@ -6,6 +6,7 @@ export const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 };
+export const avatar = "https://media.tenor.com/images/a742721ea2075bc3956a2ff62c9bfeef/tenor.gif"
 
 export const forms = {
   add: document.querySelector('.form-addCard'),

@@ -20,12 +20,10 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-    function closeAllPopups() {
+    const closeAllPopups = () => {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
-        setSelectedCard("");
-        setIsSaving(false);
     }
 
     return (
@@ -56,7 +54,7 @@ function App() {
                 </article>
             </template>
             isOpen={isEditAvatarPopupOpen ? "popup_is-opened" : ""}
-            <PopupWithForm isOpen={isEditAvatarPopupOpen ? "popup_is-opened" : ""}>
+            <PopupWithForm onClose={closeAllPopups} isOpen={isEditAvatarPopupOpen?"popup_is-opened":""}>
                         <input
                             className="popup__input popup__input_avatarLink"
                             name="avatarLink"
@@ -67,7 +65,7 @@ function App() {
                         />
                         <span className="popup__error" id="avatarLink-error"></span>
             </PopupWithForm>
-            <PopupWithForm isOpen={isEditProfilePopupOpen ? "popup_is-opened" : ""}>
+            <PopupWithForm onClose={closeAllPopups} isOpen={isEditProfilePopupOpen ? "popup_is-opened" : ""}>
                         <input
                             className="popup__input popup__input_name"
                             name="name"
@@ -91,7 +89,7 @@ function App() {
                         />
                         <span className="popup__error" id="job-error"></span>
             </PopupWithForm>
-            <PopupWithForm isOpen={isAddPlacePopupOpen ? "popup_is-opened" : ""}>
+            <PopupWithForm onClose={closeAllPopups} isOpen={isAddPlacePopupOpen ? "popup_is-opened" : ""}>
                         <input
                             className="popup__input popup__input_title"
                             name="title"
