@@ -1,6 +1,6 @@
 .elements__like-btn {
   margin-right: 20px;
-  background-image: url();
+  background-image: url(../../../images/like.svg);
   width: 22px;
   height: 18px;
   align-self: center;
@@ -14,8 +14,4 @@
 .elements__like-btn:hover {
   opacity: 0.5;
   cursor: pointer;
-}
-
-.elements__like-btn:active {
-  background-image: url(../../../images/like-active.svg);
 }
