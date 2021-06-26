@@ -1,4 +1,4 @@
-import DelIcon from '../images/DelIcon.svg';
+import deleteIcon from '../images/deleteIcon.svg';
 
 function Card({ card, onCardClick }) {
   function handleClick() {
@@ -8,7 +8,7 @@ function Card({ card, onCardClick }) {
   return (
     <article className="elements__card">
       <div className="elements__img-container">
-        <img src={DelIcon} alt="Удалить" className="elements__delete-btn" />
+        <img src={deleteIcon} alt="Удалить" className="elements__delete-btn" />
         <img
           src={card.link}
           alt={card.name}

@@ -9,7 +9,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState({ name: '', link: '' });
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -27,7 +27,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setSelectedCard('');
+    setSelectedCard({ name: '', link: '' });
   };
 
   return (
@@ -41,8 +41,10 @@ function App() {
       />
       <Footer />
       <PopupWithForm
+        title="Обновить аватар"
+        name="avatar"
         onClose={closeAllPopups}
-        isOpen={isEditAvatarPopupOpen ? 'popup_is-opened' : ''}
+        isOpen={isEditAvatarPopupOpen}
       >
         <input
           className="popup__input popup__input_avatarLink"
@@ -55,8 +57,10 @@ function App() {
         <span className="popup__error" id="avatarLink-error"></span>
       </PopupWithForm>
       <PopupWithForm
+        title="Редактировать профиль"
+        name="edit"
         onClose={closeAllPopups}
-        isOpen={isEditProfilePopupOpen ? 'popup_is-opened' : ''}
+        isOpen={isEditProfilePopupOpen}
       >
         <input
           className="popup__input popup__input_name"
@@ -81,7 +85,12 @@ function App() {
         />
         <span className="popup__error" id="job-error"></span>
       </PopupWithForm>
-      <PopupWithForm onClose={closeAllPopups} isOpen={isAddPlacePopupOpen ? 'popup_is-opened' : ''}>
+      <PopupWithForm
+        title="Новое место"
+        name="add"
+        onClose={closeAllPopups}
+        isOpen={isAddPlacePopupOpen}
+      >
         <input
           className="popup__input popup__input_title"
           name="title"
@@ -103,20 +112,7 @@ function App() {
         />
         <span className="popup__error" id="link-error"></span>
       </PopupWithForm>
-      <ImagePopup
-        isOpen={selectedCard == '' ? '' : 'popup_is-opened'}
-        card={selectedCard}
-        onClose={closeAllPopups}
-      />
-      <div className="popup popup_type_confirm">
-        <div className="popup__body">
-          <button type="button" className="popup__close popup-close"></button>
-          <h2 className="popup__title">Вы уверены?</h2>
-          <button className="popup__btn-save" type="submit">
-            Да
-          </button>
-        </div>
-      </div>
+      <ImagePopup isOpen={selectedCard.link} card={selectedCard} onClose={closeAllPopups} />
     </>
   );
 }
