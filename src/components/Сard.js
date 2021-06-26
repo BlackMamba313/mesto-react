@@ -19,8 +19,8 @@ function Card({ card, onCardClick }) {
       <div className="elements__info">
         <h2 className="elements__title">{card.name}</h2>
         <div className="elements__likes">
-          <p className="elements__likesCounter">{card.likes.length}</p>
           <button type="button" className="elements__like-btn"></button>
+          <p className="elements__likesCounter">{card.likes.length}</p>
         </div>
       </div>
     </article>

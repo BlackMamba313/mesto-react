@@ -9,15 +9,19 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userAvatar, setUserAvatar] = useState(avatar);
   const [cards, setCards] = useState([]);
   useEffect(() => {
-    api.getUserInfo().then((userData) => {
+    api.getUserInfo()
+      .then((userData) => {
       setUserName(userData.name);
       setUserAvatar(userData.avatar);
       setUserDescription(userData.about);
-    });
+    })
+      .catch((err) => {console.log(err)})
 
-    api.getInitialCards().then((cardList) => {
+    api.getInitialCards()
+      .then((cardList) => {
       setCards(cardList);
-    });
+    })
+      .catch((err) => {console.log(err)})
   }, []);
 
   return (
