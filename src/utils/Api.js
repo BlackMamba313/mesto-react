@@ -12,15 +12,10 @@ export const getUserInfo = () => instance.get("/users/me")
 export const setUserInfo = (name, job) => instance.patch("/users/me", {name: name, about: job,})
 export const setAvatar = (avatarLink) => instance.patch("/users/me/avatar", {avatar: avatarLink,})
 export const postNewCard = (name, link) => instance.post("/cards", { name: name, link: link,})
-export const deleteCard = (cardId) => axios.delete(`/cards/${cardId}`,)
-export const likeCard = (cardId, isLiked) => instance
+export const deleteCard = (cardId) => instance.delete(`/cards/${cardId}`,)
+export const likeCardDelite = (cardId, isLiked) => instance.delete(`/cards/${cardId}`,)
+export const likeCardPut = (cardId, isLiked) => instance.put(`/cards/${cardId}`,)
 
-// export const likeCard = (cardId, isLiked) => {
-//     return fetch(`${baseUrl}/cards/likes/${cardId}`, {
-//       method: isLiked ? 'DELETE' : 'PUT',
-//       headers: {headers},
-//     }).then(checkRequestResult);
-//   }
 
 
 
