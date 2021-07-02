@@ -1,27 +1,29 @@
 import { useState, useEffect } from 'react';
-import api from '../utils/Api';
 import { avatar } from '../utils/constants';
 import Card from './Сard';
+import {getInitialCards, getUserInfo} from "../utils/Api"
 
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userName, setUserName] = useState('Capitan Flint');
   const [userDescription, setUserDescription] = useState('Marinero');
   const [userAvatar, setUserAvatar] = useState(avatar);
   const [cards, setCards] = useState([]);
-  useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
-      setUserName(userData.name);
-      setUserAvatar(userData.avatar);
-      setUserDescription(userData.about);
-    })
-      .catch((err) => {console.log(err)})
 
-    api.getInitialCards()
-      .then((cardList) => {
-      setCards(cardList);
+  useEffect(() => {
+    getUserInfo()
+      .then((res) => {
+        console.log(res.data)
+      setUserName(res.data.name)
+      setUserAvatar(res.data.avatar)
+      setUserDescription(res.data.about)
     })
-      .catch((err) => {console.log(err)})
+      .catch((err) => {console.log(err.data)})
+
+    getInitialCards()
+      .then((res) => {
+      setCards(res.data);
+    })
+      .catch((err) => console.log(err.data))
   }, []);
 
   return (
