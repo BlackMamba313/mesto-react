@@ -14,7 +14,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onC
     );
   }
 
-  console.log(currentUser)
+
   return (
     <>
       <main>
@@ -36,7 +36,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onC
 
         <section className="elements">
           {cards.map((item, index) => (
-            <Card cardData={item}
+            <Card card={item}
                   key={index}
                   onCardClick={onCardClick}
                   onCardLike={onCardLike}
