@@ -23,8 +23,8 @@ function AddPlacePopup(props) {
             title="Новое место"
             name="add"
             onSubmit={handleSubmit}
-            onClose={props.closeAllPopups}
-            isOpen={props.isAddPlacePopupOpen}
+            onClose={props.onClose}
+            isOpen={props.isOpen}
         >
             <input
                 className="popup__input popup__input_title"
@@ -37,7 +37,7 @@ function AddPlacePopup(props) {
                 placeholder="Название"
                 onChange={handleNameChange}
             />
-            <span className="popup__error" id="title-error"></span>
+            <span className="popup__error" id="title-error" />
             <input
                 className="popup__input popup__input_url"
                 name="link"
@@ -47,7 +47,7 @@ function AddPlacePopup(props) {
                 required
                 onChange={handleLinkChange}
             />
-            <span className="popup__error" id="link-error"></span>
+            <span className="popup__error" id="link-error" />
         </PopupWithForm>
     );
 }

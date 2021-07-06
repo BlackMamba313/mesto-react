@@ -6,7 +6,7 @@ import ImagePopup from './ImagePopup'
 import EditProfilePopup from './EditProfilePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
-import ClosablePopup from './ClosablePopup'
+import ClosePopup from './ClosePopup'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from '../utils/Api'
 
@@ -16,10 +16,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({ name: '', link: '' });
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState([]);
   const [cards, setCards] = useState([]);
-  const [deletedCard, setDeletedCard] = useState({});
-  const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -40,11 +38,12 @@ function App() {
     setIsAddPlacePopupOpen(true);
   };
   function handleCardClick(card) {
-      setDeletedCard(card);
+
+      setSelectedCard({ name: card.name, link: card.link });
   }
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some((i) => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
         api
             .likeCard(card._id, !isLiked)
             .then((newCard) => {
@@ -54,12 +53,11 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-function handleCardDelete() {
-    setIsSaving(true);
+function handleCardDelete(card) {
     api
-        .deleteCard(deletedCard._id)
+        .deleteCard(card._id)
         .then(() => {
-            const newCards = cards.filter((c) => c._id !== deletedCard._id);
+            const newCards = cards.filter((c) => c._id !== card._id);
             setCards(newCards);
         })
         .catch((err) => console.log(err))
@@ -67,7 +65,6 @@ function handleCardDelete() {
 }
 
 function handleUpdateUser(user) {
-    setIsSaving(true);
     api
         .setUserInfo(user)
         .then((user) => setCurrentUser(user))
@@ -76,7 +73,6 @@ function handleUpdateUser(user) {
 }
 
 function handleUpdateAvatar(avatar) {
-    setIsSaving(true);
     api
         .setAvatar(avatar)
         .then((avatar) => setCurrentUser(avatar))
@@ -85,7 +81,6 @@ function handleUpdateAvatar(avatar) {
 }
 
 function handleAddPlaceSubmit(card) {
-    setIsSaving(true);
     api
         .postNewCard(card)
         .then((card) => setCards([card, ...cards]))
@@ -98,7 +93,6 @@ function handleAddPlaceSubmit(card) {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard({ name: '', link: '' });
-    setIsSaving(false);
   };
 
   return (
@@ -116,49 +110,49 @@ function handleAddPlaceSubmit(card) {
       />
       <Footer />
             {isEditProfilePopupOpen ? (
-                <ClosablePopup>
+                <ClosePopup>
                     <EditProfilePopup
                         isOpen={isEditProfilePopupOpen}
                         onClose={closeAllPopups}
                         onUpdateUser={handleUpdateUser}
-                        isSaving={isSaving}
+
                     />
-                </ClosablePopup>
+                </ClosePopup>
             ) : (
                 ""
             )}
             {isAddPlacePopupOpen ? (
-                <ClosablePopup>
+                <ClosePopup>
                     <AddPlacePopup
                         isOpen={isAddPlacePopupOpen}
                         onClose={closeAllPopups}
                         onAddPlace={handleAddPlaceSubmit}
-                        isSaving={isSaving}
+
                     />
-                </ClosablePopup>
+                </ClosePopup>
             ) : (
                 ""
             )}
             {isEditAvatarPopupOpen ? (
-                <ClosablePopup>
+                <ClosePopup>
                     <EditAvatarPopup
                         isOpen={isEditAvatarPopupOpen}
                         onClose={closeAllPopups}
                         onUpdateAvatar={handleUpdateAvatar}
-                        isSaving={isSaving}
+
                     />
-                </ClosablePopup>
+                </ClosePopup>
             ) : (
                 ""
             )}
             {selectedCard.link ? (
-                <ClosablePopup>
+                <ClosePopup>
                     <ImagePopup
-                        isOpen={selectedCard ? "popup_is-opened" : ""}
+                        isOpen={selectedCard.link}
                         card={selectedCard}
                         onClose={closeAllPopups}
                     />
-                </ClosablePopup>
+                </ClosePopup>
             ) : (
                 ""
             )}

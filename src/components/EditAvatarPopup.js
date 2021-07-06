@@ -20,7 +20,6 @@ function EditAvatarPopup(props) {
             isOpen={props.isOpen}
             onClose={props.onClose}
             onSubmit={handleSubmit}
-            isSaving={props.isSaving}
         >
             <input
                 className="popup__input popup__input_avatarLink"
@@ -31,7 +30,7 @@ function EditAvatarPopup(props) {
                 required
                 ref={avatarRef}
             />
-            <span className="popup__error" id="avatarLink-error"></span>
+            <span className="popup__error" id="avatarLink-error" />
         </PopupWithForm>
     );
 }

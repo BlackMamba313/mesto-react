@@ -23,28 +23,23 @@ class Api {
         return Promise.reject(`Возникла ошибка: ${res.status}`);
     }
 
-    setUserInfo(name, job) {
+    setUserInfo(info) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
-            body: JSON.stringify({
-                name: name,
-                about: job,
-            }),
+            body: JSON.stringify(info),
         }).then(this._checkRequestResult);
     }
 
-    setAvatar(avatarLink) {
+    setAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
-            body: JSON.stringify({
-                avatar: avatarLink,
-            }),
+            body: JSON.stringify(avatar)
         }).then(this._checkRequestResult);
     }
 
-    postNewCard(name, link) {
+    postNewCard({name, link}) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
@@ -57,7 +52,7 @@ class Api {
 
     likeCard(cardId, isLiked) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-            method: isLiked ? 'DELETE' : 'PUT',
+            method: !isLiked ? 'DELETE' : 'PUT',
             headers: this._headers,
         }).then(this._checkRequestResult);
     }
