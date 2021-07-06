@@ -8,7 +8,7 @@ import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import ClosePopup from './ClosePopup'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import api from '../utils/Api'
+import api from '../utils/api'
 
 function App() {
 
